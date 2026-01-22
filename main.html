@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <tilte>Portfolio Website Design</tilte>
+        
+    <!-- cdn font icon css-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+        <style>
+            *{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'poppins',sans-serif;
+    text-decoration: none;
+}
+body{
+    overflow-x: hidden;
+}
+.hero-header{
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    background: #000000;
+}
+.wrapper{
+    width: 1280px;
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 0 20px;   
+}
+header{
+    padding: 40px 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.logo{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.logo i{
+    height: 45px;
+    width: 45px;
+    background-color: #007ced;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.5rem;
+    padding: 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+.logo .logo-text{
+    font-size: 24px;
+    font-weight: 500;
+    color: #fff;
+}
+nav.togglebtn{
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 45px;
+    right: 3%;
+    z-index: 5;
+    cursor: pointer;
+    display: none;
+    
+}
+nav .togglebtn span{
+    display: block;
+    background-color: #007ced;
+    margin: 5px 0px;
+    width: 100%;
+    height: 3px;
+    transition: 0.3s;
+    transition-property: 'transform','opacity';
+
+}
+nav .navlinks{
+    list-style-type: none;
+
+}
+nav .navlinks li{
+    display: inline-block;
+
+}
+nav .navlinks li a{
+    color: #e5e5e5;
+    margin-right: 2.5rem;
+}
+.container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 3rem;
+}
+.container .hero-pic{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 15px solid #535050;
+    box-shadow: 5px 7px 25px rgb(0,0,0,0.5);
+}
+.hero-pic img{
+    height: 100%;
+    width: 100%;
+    transition: 0.5s;
+}
+.hero-pic img:hover{
+    transform: scale(1.2);
+}
+.hero-text{
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+.hero-text h5{
+    color: #e5e5e5;
+    font-size: 14px;
+}
+.hero-text h5 span{
+    color: #007ced;
+    font-size: 16px;
+}
+.hero-text h1{
+    color: #007ced;
+    font-size: 3rem
+} 
+.hero-text p{
+    color:#e5e5e5;
+}
+.btn-group{
+    margin: 45px;
+}
+.btn-group .btn{
+    border-color: #d5d5d5;
+    color: #fff;
+    background-color: #333;
+    padding: 12px 25px;
+    margin: 5px opx;
+    margin-right: 7px;
+    border-radius: 30px;
+    border: 2px solid #e5e5e5;
+}
+.btn.active{
+    border-color: #007ced;
+}
+.hero-text .social i{
+    color: #e5efef;
+    font-size: 18px;
+    margin-right: 10px;
+    transition: 0.5s;
+}
+.hero-text .social i:hover{
+    color: #007ced;
+    transform: rotate(360deg);
+}
+/* Responsive design & displaying navbar for small sccreen*/
+@media(max-width:930px)
+{
+
+    nav.togglebtn{
+        display:initial;
+    }
+    /* For toggle button*/
+    .click {
+        top: 45;
+    }
+    .click span{
+        position: absolute;
+        margin-top: 12px;
+    }
+    .click span:first-cchild{
+        transform: rotate(-40deg);
+    }
+    .click span:nth-child(2)
+    {
+        opacity: 0;
+        margin:0;
+    }
+    .click span:last-child{
+        transform: rotate(45deg);
+        top: 0;
+    }
+    nav .navlinks{
+        position: absolute;
+        top: 110px;
+        right: 0;
+        bottom: 0;
+        width: 60%;
+        height: 100vh;
+        background-color: #222;
+        z-index: 3;
+        box-shadow: 5px 13px 30px rgb(0,0,0,0.1);
+        transition: 0.5s;
+        padding: 25px 0px;
+    }
+    nav .navlinks li{
+        display: block;
+    }
+    nav .navlinks li a{
+        display: block;
+        margin-bottom: 15px;
+        text-align: center;
+
+    }
+    nav .navlinks .open{
+        right: 0;
+    }
+}
+@media(max-direction:768px)
+{
+    .container{
+        flex-direction: column;
+        padding: 2rem;
+    }
+}
+</style>
+
+        
+    </head>
+    <body>
+        <div class="hero-header">
+            <div class="wrapper">
+                <header>
+                    <div class="logo">
+                        <i class="fa-solid fa-a"></i>
+                        <div class="logo-text">Mohd Aayan</div>
+                    </div>
+                    <nav>
+                        <div class="togglebtn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        </div>
+                        <ul class="navlinks">
+                            <li><a herf="#">Home</a></li>
+                            <li><a herf="#">Portfolio</a></li>
+                            <li><a herf="#">Resume</a></li>
+                            <li><a herf="#">Blog</a></li>
+                        </ul>
+                    </nav>
+                </header>
+                <div class="container">
+                    <div class="hero-pic">
+                        <img src="Aayansmart.png" alt="profile pic">
+                    </div>
+                    <div class="hero-text">
+                        <h5>Hi I'm <span class="">Web Developer</span>
+                            <h1>Mohd Aayan</h1>
+                            <p>Motivated B.Tech Computer Science (AI) student with hands-onexperience in Web Development, IoT & Embedded Systems, andSolar Energy projects. Passionate about building practical solutionsand eager to apply technical skills in real-world projects andprofessional CONTACT ME environments.</p>
+                         <div class="btn-group">
+                            <a href="#" class="btn">Download CV</a>
+                            <a href="#" class="btn">Contact</a>
+                         </div>
+                         <div class="social">
+                            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                         </div>   
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            /** creating button click show hide navbar**/
+            var togglebtn=document.querySelector(".togglebtn");
+            var nav=document.querySelector(".navlinks");
+            var links=documenet.wuerySelector(".navlinks li");
+
+            togglebtn.addEventListener("click",function(){
+                this.classlist.toggle("click");
+                nav.classlist.toggle("open");
+
+            })
+        </script>
+    </body>
+</html>

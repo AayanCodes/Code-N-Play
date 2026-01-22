@@ -1,0 +1,282 @@
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Smart Socket</title>
+
+<style>
+/* -------- BASE -------- */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #000;
+    color: #fff;
+    text-align: center;
+}
+
+.section {
+    padding: 80px 5%;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+h1 {
+    font-size: 42px;
+}
+
+h2 {
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+/* -------- HERO -------- */
+.hero {
+    min-height: 90vh;
+    background:
+        linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.2)),
+        linear-gradient(to right, #b30000, #000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    max-width: 750px;
+}
+
+/* -------- ROWS / CARDS -------- */
+.row {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.card {
+    min-width: 260px;
+    background: #141414;
+    border-radius: 12px;
+    padding: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.06);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+}
+
+/* -------- CONTROL -------- */
+.control-box {
+    max-width: 420px;
+    margin: auto;
+}
+
+.device {
+    background: #141414;
+    padding: 18px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.4s;
+}
+
+.device.on {
+    background: rgba(229, 9, 20, 0.25);
+}
+
+.device-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #444;
+}
+
+.device.on .status-dot {
+    background: #e50914;
+    animation: pulse 1.4s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(229,9,20,0.7); }
+    70% { box-shadow: 0 0 0 12px rgba(229,9,20,0); }
+    100% { box-shadow: 0 0 0 0 rgba(229,9,20,0); }
+}
+
+/* -------- TOGGLE -------- */
+.toggle {
+    position: relative;
+    width: 52px;
+    height: 26px;
+}
+
+.toggle input { display: none; }
+
+.slider {
+    position: absolute;
+    background: #555;
+    width: 100%;
+    height: 100%;
+    border-radius: 26px;
+    cursor: pointer;
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s;
+}
+
+input:checked + .slider {
+    background: #e50914;
+}
+
+input:checked + .slider::before {
+    transform: translateX(26px);
+}
+
+/* -------- FOOTER -------- */
+footer {
+    padding: 25px;
+    background: #000;
+    color: #777;
+    font-size: 14px;
+}
+</style>
+
+<script>
+function toggleDevice(device) {
+    const box = document.getElementById(device);
+    const chk = document.getElementById(device + "-chk");
+
+    if (chk.checked) {
+        fetch('/' + device + '/on');
+        box.classList.add("on");
+    } else {
+        fetch('/' + device + '/off');
+        box.classList.remove("on");
+    }
+}
+</script>
+
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero section">
+    <div class="hero-content">
+        <h1>Smart IoT-Based Home Automation</h1>
+        <p>
+            A next-generation smart socket system powered by ESP32 that allows
+            users to control home appliances locally or remotely, reduce energy
+            wastage, and build smarter, safer homes.
+        </p>
+    </div>
+</div>
+
+<!-- CONTROL -->
+<div class="section">
+    <h2>Offline Control</h2>
+
+    <div class="control-box">
+        <div class="device" id="fan">
+            <div class="device-left">
+                <div class="status-dot"></div> Fan
+            </div>
+            <label class="toggle">
+                <input type="checkbox" id="fan-chk" onchange="toggleDevice('fan')">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="device" id="light">
+            <div class="device-left">
+                <div class="status-dot"></div> Light
+            </div>
+            <label class="toggle">
+                <input type="checkbox" id="light-chk" onchange="toggleDevice('light')">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+    <h2>How the System Works</h2>
+    <div class="row">
+        <div class="card">
+            <h3>Online Mode</h3>
+            <p>Control appliances from anywhere using Wi-Fi and Blynk IoT.</p>
+        </div>
+        <div class="card">
+            <h3>Offline Mode</h3>
+            <p>ESP32 Soft-AP enables local control when internet is unavailable.</p>
+        </div>
+    </div>
+</div>
+
+<!-- TECHNOLOGY -->
+<div class="section">
+    <h2>Technology & Components</h2>
+    <div class="row">
+        <div class="card">ESP32 Microcontroller</div>
+        <div class="card">Relay Module (Isolation)</div>
+        <div class="card">220V AC → 5V DC Supply</div>
+        <div class="card">3-Pin Plug & Socket</div>
+        <div class="card">HTML, CSS & JavaScript UI</div>
+    </div>
+</div>
+
+<!-- ADVANTAGES -->
+<div class="section">
+    <h2>Key Advantages</h2>
+    <div class="row">
+        <div class="card">Smart energy savings</div>
+        <div class="card">Remote access anytime</div>
+        <div class="card">Improved safety</div>
+        <div class="card">Clean user experience</div>
+    </div>
+</div>
+
+<!-- WHY IT MATTERS -->
+<div class="section">
+    <h2>Why This Solution Matters</h2>
+    <div class="row">
+        <div class="card">Eco-friendly & sustainable</div>
+        <div class="card">Inclusive for elderly users</div>
+        <div class="card">Lower electricity bills</div>
+    </div>
+</div>
+
+<footer>
+    © Team Code-N-Play | Smart IoT Socket Project
+</footer>
+
+</body>
+</html>
+ 
